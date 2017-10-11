@@ -1,15 +1,19 @@
 'use strict'
 
+const multer = require('multer')
+const multerUpload = multer({dest: 'tmp/'})
+
 const controller = require('lib/wiring/controller')
 const models = require('app/models')
-const Uploads = models.upload
+const Upload = models.upload
 
 const authenticate = require('./concerns/authenticate')
 const setUser = require('./concerns/set-current-user')
 const setModel = require('./concerns/set-mongoose-model')
+const s3upload = require('lib/aws-s3-upload')
 
 const index = (req, res, next) => {
-  Uploads.find()
+  Upload.find()
     .then(uploads => res.json({
       uploads: uploads.map((e) =>
         e.toJSON({ virtuals: true, user: req.user }))
@@ -24,15 +28,27 @@ const show = (req, res) => {
 }
 
 const create = (req, res, next) => {
-  const upload = Object.assign(req.body.upload, {
-    _owner: req.user._id
-  })
-  Uploads.create(upload)
+  console.log('body is', req.body)
+  const options = {
+    filename: req.file.path,
+    mime: req.file.mimetype,
+    originalName: req.file.originalname
+  }
+  console.log('options are', options)
+  s3upload(options)
+    .then(s3response => {
+      // console.log(s3response)
+      return Upload.create({
+        url: s3response.Location,
+        name: req.body.file.name,
+        _owner: req.user._id
+      })
+    })
     .then(upload =>
       res.status(201)
-        .json({
-          upload: upload.toJSON({ virtuals: true, user: req.user })
-        }))
+      .json({
+        upload
+      }))
     .catch(next)
 }
 
@@ -56,8 +72,9 @@ module.exports = controller({
   update,
   destroy
 }, { before: [
+  { method: multerUpload.single('file[file]'), only: ['create'] },
   { method: setUser, only: ['index', 'show'] },
   { method: authenticate, except: ['index', 'show'] },
-  { method: setModel(Uploads), only: ['show'] },
-  { method: setModel(Uploads, { forUser: true }), only: ['update', 'destroy'] }
+  { method: setModel(Upload), only: ['show'] },
+  { method: setModel(Upload, { forUser: true }), only: ['update', 'destroy'] }
 ] })
