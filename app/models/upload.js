@@ -8,8 +8,8 @@ const uploadSchema = new mongoose.Schema({
     required: true
   },
   tags: {
-    type: [String],
-    required: true // or false??
+    type: [String]
+    // required: true // or false??
   },
   _owner: {
     type: mongoose.Schema.Types.ObjectId,

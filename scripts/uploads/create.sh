@@ -1,5 +1,5 @@
 #!/bin/bash
-TOKEN=C4JyNfnrWnUgb/MmUIb6yRnF8rWbNB0YtoHOfWE0HQM=--MY98hO0w3fmTlF89k5D+7ziGz+F4mt+pzj3qCVfuyR8= NAME=upload TAGS=boston
+TOKEN=iK/dGfaKxBNfSG4i2Z+FJxVWijc78zV73MhlkU4J8mE=--oj/MYt9wBORrEsm2mSH7T6XaF3KPpE6Z7GH8BOwn+Yw=
 
 API="http://localhost:4741"
 URL_PATH="/uploads"
