@@ -1,4 +1,6 @@
 .env
+test/
+tmp/
 
 # Created by https://www.gitignore.io/api/macos,linux
 
