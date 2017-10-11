@@ -1,4 +1,5 @@
 #!/bin/bash
+EMAIL=kat PASSWORD=kat PASSWORD=kat
 
 API="http://localhost:4741"
 URL_PATH="/sign-up"
