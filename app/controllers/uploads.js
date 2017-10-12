@@ -28,7 +28,7 @@ const show = (req, res) => {
 }
 
 const create = (req, res, next) => {
-  console.log('body is', req.body)
+  console.log('user is', req.user)
   const options = {
     filename: req.file.path,
     mime: req.file.mimetype,
@@ -37,11 +37,12 @@ const create = (req, res, next) => {
   console.log('options are', options)
   s3upload(options)
     .then(s3response => {
-      // console.log(s3response)
+      console.log(s3response)
       return Upload.create({
         url: s3response.Location,
         name: req.body.file.name,
-        _owner: req.user._id
+        _owner: req.user._id,
+        uploadedBy: req.user.email
       })
     })
     .then(upload =>
