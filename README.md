@@ -1,5 +1,4 @@
 ## FileDumpling Back-end README
----
 
 * The deployed client-side web application can be found [here](https://4knclone.github.io/FileBucket-Front-End/)
 * The README and repository for the front-end of this project can be found [here](https://github.com/4KnClone/FileBucket-Front-End)
@@ -10,10 +9,11 @@ FileDumpling is a single page web application built by Katherine Wu, Aaron Vale,
 An uploaded file will display in a table that shows the specified file name, the user who uploaded it, the date uploaded and modified, as well as a download button. If the logged in user is the original uploader, an edit button and a delete button will also display.
 
 ## Development Process
----
+
 ### Planning
 The planning proccess for the back end was centered on the below diagram.
 ![Entity Relationship Diagram](./erdplus-diagram.png)
+
 Here we see that our data model involves two entities -- users and files (uploads). Users have the attributes of email (or username) and password. Files have the attributes of owner, extension, name, tags, date modified, and date added. Ultimately, extension was not included in the schema.
 Another large part of the back-end development process was integrating our back end with the Amazon Web Services storage system, where the uploaded files are kept. This involved building code that would allow our app to upload files to AWS and retrieve and store information about those files.
 
