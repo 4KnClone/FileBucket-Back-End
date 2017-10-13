@@ -1,7 +1,7 @@
 ## FileDumpling Back-end README
 
-* The deployed client-side web application can be found [here](https://4knclone.github.io/FileBucket-Front-End/)
-* The README and repository for the front-end of this project can be found [here](https://github.com/4KnClone/FileBucket-Front-End)
+* The deployed client-side web application can be found [here](https://4knclone.github.io/FileDumpling/)
+* The README and repository for the front-end of this project can be found [here](https://github.com/4KnClone/FileDumpling)
 * This repo is deployed using Heroku and can be found [here](https://enigmatic-beach-10306.herokuapp.com/)
 
 ### Overview
