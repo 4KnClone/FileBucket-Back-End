@@ -18,11 +18,11 @@ Here we see that our data model involves two entities -- users and files (upload
 Another large part of the back-end development process was integrating our back end with the Amazon Web Services storage system, where the uploaded files are kept. This involved building code that would allow our app to upload files to AWS and retrieve and store information about those files.
 
 ### Process
-Much of the proccess involved working cohesively as a group. We commonly practiced both pair programming, where two developers would work on one computer solving a problem together. For more challenging problems, we worked as a whole group to solve the problems on one local repository and then push the changes to the remote repo. Nightly, each developer would work independantly on an issue identified at the end of that day. Each morning our first order of business was to review what we worked on independently and then merge the changes into our remote repository, working out any conflicts as we went.
+Much of the proccess involved working cohesively as a group. We commonly practiced both pair programming, where two developers would work on one computer solving a problem together. For more challenging problems, we worked as a whole group to solve the problems on one local repository and then push the changes to the remote repo. Nightly, each developer would work independently on an issue identified at the end of that day. Each morning our first order of business was to review what we worked on independently and then merge the changes into our remote repository, working out any conflicts as we went.
 
 #### Technologies used
 * Node.js
-* express
+* express.js
 * mongoose
 * mongoDB
 * Curl
