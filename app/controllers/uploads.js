@@ -13,12 +13,22 @@ const setModel = require('./concerns/set-mongoose-model')
 const s3upload = require('lib/aws-s3-upload')
 
 const index = (req, res, next) => {
-  Upload.find()
+  const query = req._parsedUrl.query
+  if (query) {
+    Upload.find({ tags: query })
+      .then(uploads => res.json({
+        uploads: uploads.map((e) =>
+          e.toJSON({ virtuals: true, user: req.user }))
+      }))
+      .catch(next)
+  } else {
+    Upload.find()
     .then(uploads => res.json({
       uploads: uploads.map((e) =>
-        e.toJSON({ virtuals: true, user: req.user }))
+      e.toJSON({ virtuals: true, user: req.user }))
     }))
     .catch(next)
+  }
 }
 
 const show = (req, res) => {
