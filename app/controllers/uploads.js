@@ -38,20 +38,23 @@ const show = (req, res) => {
 }
 
 const create = (req, res, next) => {
-  console.log('user is', req.user)
+  let tags = req.body.file.tags
+  if (tags) {
+    tags = tags.replace(/[^a-z0-9 ]/gi, '').split(' ')
+  }
+
   const options = {
     filename: req.file.path,
     mime: req.file.mimetype,
     originalName: req.file.originalname
   }
-  console.log('options are', options)
   s3upload(options)
     .then(s3response => {
-      console.log(s3response)
       return Upload.create({
         url: s3response.Location,
         name: req.body.file.name,
         _owner: req.user._id,
+        tags: tags,
         uploadedBy: req.user.email
       })
     })
